@@ -62,8 +62,8 @@ jobs:
       - name: Install dependencies
         run: |
           cd back
-          composer install --no-interaction --prefer-dist --optimize-autoloader
           composer self-update --1
+          composer install --no-interaction --prefer-dist --optimize-autoloader
 
       - name: Run tests
         run: |
