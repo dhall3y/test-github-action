@@ -8,7 +8,7 @@ on:
 
 jobs:
   build_backend:
-    runs-on: debian-latest
+    runs-on: self-hosted
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
@@ -47,7 +47,7 @@ jobs:
           path: back/vendor
 
   test_backend:
-    runs-on: debian-latest
+    runs-on: self-hosted
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
@@ -68,7 +68,7 @@ jobs:
           vendor/bin/phpunit ./tests/Unit
 
   deploy:
-    runs-on: debian-latest
+    runs-on: self-hosted
     needs: [build_backend, test_backend]
     if: github.ref == 'refs/heads/main' && github.event_name == 'push'
     steps:
