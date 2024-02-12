@@ -23,9 +23,8 @@ jobs:
           sudo apt update
           sudo apt install curl php-cli php-mbstring git unzip -qy
           curl -sS https://getcomposer.org/installer | php
-          php composer-setup.php
-          php -r "unlink('composer-setup.php');"
           mv composer.phar /usr/local/bin/composer
+          php -r "unlink('composer-setup.php');"
           alias composer='/usr/local/bin/composer'
           composer self-update --1
 
