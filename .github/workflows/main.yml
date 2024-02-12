@@ -1,4 +1,4 @@
-name: CI/CD Pipeline
+me: CI/CD Pipeline
 
 on:
   push:
@@ -27,6 +27,7 @@ jobs:
           php -r "unlink('composer-setup.php');"
           mv composer.phar /usr/local/bin/composer
           alias composer='/usr/local/bin/composer'
+          composer self-update --1
 
       - name: Install dependencies and build
         run: |
