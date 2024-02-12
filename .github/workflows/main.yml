@@ -30,7 +30,7 @@ jobs:
 
       - name: Install dependencies and build
         run: |
-          cd back
+          cd app/back
           cp .env.example .env
           composer install --no-interaction --prefer-dist --optimize-autoloader
           php artisan key:generate
@@ -38,14 +38,14 @@ jobs:
       - name: Cache vendor directory
         uses: actions/cache@v2
         with:
-          path: back/vendor
+          path: app/back/vendor
           key: ${{ runner.os }}-composer-${{ hashFiles('app/back/composer.lock') }}
 
       - name: Archive artifacts
         uses: actions/upload-artifact@v2
         with:
           name: backend-artifact
-          path: back/vendor
+          path: app/back/vendor
 
   test_backend:
     runs-on: self-hosted
@@ -61,13 +61,13 @@ jobs:
 
       - name: Install dependencies
         run: |
-          cd back
+          cd app/back
           composer self-update --1
           composer install --no-interaction --prefer-dist --optimize-autoloader
 
       - name: Run tests
         run: |
-          cd back
+          cd app/back
           vendor/bin/phpunit ./tests/Unit
 
   deploy:
@@ -79,7 +79,7 @@ jobs:
         uses: actions/download-artifact@v2
         with:
           name: backend-artifact
-          path: back/vendor
+          path: app/back/vendor
 
       - name: Deploy
         # Add your deployment steps here
