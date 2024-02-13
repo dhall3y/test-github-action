@@ -1,0 +1,64 @@
+name: back
+
+on:
+  push:
+    branches:
+      - main
+        #paths:
+        #  - 'back/**'
+        #pull_request:
+        #  branches:
+        #    - main
+        #  paths:
+        #    - 'back/**'
+
+jobs:
+  laravel-tests:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: shivammathur/setup-php@15c43e89cdef867065b0213be354c2841860869e
+        with:
+          php-version: '7.4'
+
+      - uses: actions/checkout@v3
+
+      - name: Install Composer 2.2.0
+        run: |
+          curl -O https://getcomposer.org/download/2.2.0/composer.phar
+          chmod +x composer.phar
+          sudo mv composer.phar /usr/local/bin/composer
+          echo "PATH=$PATH:/usr/local/bin" >> $GITHUB_ENV
+
+      - name: Copy .env
+        run: cp .env.example .env
+        working-directory: back
+
+      - name: Install Dependencies
+        run: composer install -q --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist
+        working-directory: back
+
+      - name: Composer update laravel/framework
+        run: composer update laravel/framework
+        working-directory: back
+
+      - name: Generate key
+        run: php artisan key:generate
+        working-directory: back
+
+      - name: Directory Permissions
+        run: chmod -R 777 storage bootstrap/cache
+        working-directory: back
+
+      - name: Create Database
+        run: |
+          mkdir -p database
+          touch database/database.sqlite
+        working-directory: back
+
+      - name: Execute tests (Unit and Feature tests) via PHPUnit
+        env:
+          DB_CONNECTION: sqlite
+          DB_DATABASE: database/database.sqlite
+        run: vendor/bin/phpunit
+        working-directory: back
