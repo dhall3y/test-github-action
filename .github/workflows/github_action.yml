@@ -1,12 +1,16 @@
-name: Node.js CI
+name: front
 
 on:
   push:
     branches:
       - master
-        #paths:
-        #  - 'front/**'
-
+    paths:
+      - 'front/**'
+    pull_request:
+      branches:
+        - master
+      paths:
+        - 'back/**'
 jobs:
   build_front:
     runs-on: ubuntu-latest

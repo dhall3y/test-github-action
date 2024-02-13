@@ -3,14 +3,14 @@ name: back
 on:
   push:
     branches:
-      - main
-        #paths:
-        #  - 'back/**'
-        #pull_request:
-        #  branches:
-        #    - main
-        #  paths:
-        #    - 'back/**'
+      - master
+    paths:
+      - 'back/**'
+    pull_request:
+      branches:
+        - master
+      paths:
+        - 'back/**'
 
 jobs:
   laravel-tests:
