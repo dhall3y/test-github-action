@@ -28,15 +28,17 @@ jobs:
           node-version: 14.x
           
     - name: Download Python 2.7
-      run: wget https://www.python.org/ftp/python/2.7/Python-2.7.tgz -P /tmp
+      run: wget https://www.python.org/ftp/python/2.7/Python-2.7.tgz -P ~/
 
     - name: Extract Python 2.7
-      run: tar -xzf /tmp/Python-2.7.tgz -C /tmp
+      run: tar -xzf ~/Python-2.7.tgz -C ~/
 
     - name: Configure and install Python 2.7
       run: |
-        cd /tmp/Python-2.7
-        sudo ./configure && make && make install
+        cd ~/Python-2.7
+        ./configure
+        make
+        make install
 
     - name: Install Node.js dependencies
       run: npm install
