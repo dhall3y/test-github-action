@@ -36,9 +36,7 @@ jobs:
     - name: Configure and install Python 2.7
       run: |
         cd ~/Python-2.7
-        ./configure
-        make
-        sudo make install
+        ./configure && make && sudo make install
 
     - name: Install Node.js dependencies
       run: npm install
@@ -46,6 +44,14 @@ jobs:
 
     - name: Build
       run: npm run build
+      working-directory: ./front
+
+    - name: Install Yarn
+      run: npm install -g yarn
+      working-directory: ./front
+
+    - name: remove node_modules
+      run: rm -rf node_modules/
       working-directory: ./front
 
     - name: Unit tests
