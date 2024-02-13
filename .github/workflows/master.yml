@@ -6,11 +6,11 @@ on:
       - master
     paths:
       - 'front/**'
-  pull_request:
-    branches:
-      - master
-    paths:
-      - 'front/**'
+        #pull_request:
+        #  branches:
+        #    - master
+        #  paths:
+        #    - 'front/**'
 
 jobs:
   build_front:
