@@ -3,7 +3,7 @@ name: front ci / cd
 on:
   push:
     branches:
-      - main
+      - master
 
 jobs:
   build_frontend:
