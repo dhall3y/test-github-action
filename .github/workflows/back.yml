@@ -4,13 +4,13 @@ on:
   push:
     branches:
       - master
-    paths:
-      - 'back/**'
-    pull_request:
-      branches:
-        - master
-      paths:
-        - 'back/**'
+        #    paths:
+        #      - 'back/**'
+        #    pull_request:
+        #      branches:
+        #        - master
+        #      paths:
+        #        - 'back/**'
 
 jobs:
   laravel-tests:
