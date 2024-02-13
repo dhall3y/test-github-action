@@ -36,7 +36,7 @@ jobs:
     - name: Configure and install Python 2.7
       run: |
         cd /tmp/Python-2.7
-        ./configure && make && make install
+        sudo ./configure && make && make install
 
     - name: Install Node.js dependencies
       run: npm install
