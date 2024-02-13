@@ -54,6 +54,10 @@ jobs:
       run: rm -rf node_modules/
       working-directory: ./front
 
+    - name: install yarn packages
+      run: yarn install
+      working-directory: ./front
+
     - name: Unit tests
       run: npm run test
       working-directory: ./front
