@@ -67,3 +67,9 @@ jobs:
     - name: Unit tests
       run: yarn run test
       working-directory: ./front
+
+    - name: Archive deployment directory
+      uses: actions/upload-artifact@v2
+      with:
+        name: angular-app
+        path: .

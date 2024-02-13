@@ -63,3 +63,9 @@ jobs:
           DB_DATABASE: database/database.sqlite
         run: vendor/bin/phpunit
         working-directory: back
+
+      - name: Archive deployment directory
+        uses: actions/upload-artifact@v2
+        with:
+          name: laravel-app
+          path: .
